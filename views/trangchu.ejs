@@ -7,26 +7,53 @@
     <script>
         var socket = io("http://localhost:3000");
 
-        socket.on("Client-Send-Data", function (data) {
-            $('#noidung').append(data);
-        });
-
+  socket.on("ServerSendC",function(data){
+    $("body").attr("bgColor",data);
+   });
+        
         $(document).ready(function () {
-            $('#mrA').click(function () {
-                socket.emit("Client-Send-Data", "HELLO");
+
+
+            $('#do').click(function () {
+                socket.emit("Client-Send-Color", "red");
+            });
+            $('#xanh').click(function () {
+                socket.emit("Client-Send-Color", "green");
+            });
+            $('#vang').click(function () {
+                socket.emit("Client-Send-Color", "yellow");
             });
 
 
         });
     </script>
+    <style type="text/css">
+        #do,
+        #xanh,
+        #vang {
+            width: 100px;
+            height: 100px;
+        }
+
+        #do {
+            background-color: red;
+        }
+
+        #xanh {
+            background-color: green;
+        }
+
+        #vang {
+            background-color: yellow;
+        }
+    </style>
 </head>
 
-<body>
-    <div id="mrA">Send A</div>
-    <h1 style="color:greenyellow;" id="noidung">
+<body id="containercolor">
+    <div id="do"></div>
+    <div id="xanh"></div>
+    <div id="vang"></div>
 
-    </h1>
-    
 </body>
 
 </html>
